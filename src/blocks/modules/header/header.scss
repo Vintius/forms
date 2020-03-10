@@ -1,0 +1,49 @@
+.header {
+  height: 70px;
+  border-bottom: 2px solid $light-grey;
+}
+
+.header__content {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  align-self: center;
+}
+
+.header__title {
+  vertical-align: middle;
+  font: bold 24px $font-circe;
+  line-height: 70px;
+}
+
+.header__cross {
+  height: 19px;
+  width: 19px;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    width: 27px;
+    height: 1px;
+    background: $black;
+    top: 50%;
+    left: -4px;
+    transform: rotateZ(45deg);
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    width: 27px;
+    height: 1px;
+    background: $black;
+    top: 50%;
+    left: -4px;
+    transform: rotateZ(-45deg);
+  }
+}
