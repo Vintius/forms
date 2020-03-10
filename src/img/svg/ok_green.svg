@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Финансирование-проекта" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="4_fin" transform="translate(-855.000000, -376.000000)" fill="#A1D17B" fill-rule="nonzero">
+            <path d="M877,376 C864.863281,376 855,385.863281 855,398 C855,410.136719 864.863281,420 877,420 C889.136719,420 899,410.136719 899,398 C899,385.863281 889.136719,376 877,376 Z M877,378 C888.058594,378 897,386.941406 897,398 C897,409.058594 888.058594,418 877,418 C865.941406,418 857,409.058594 857,398 C857,386.941406 865.941406,378 877,378 Z M886.0625,387.46875 L875.125,404.46875 L867.78125,397.84375 L866.4375,399.34375 L874.625,406.75 L875.5,407.53125 L876.125,406.53125 L887.75,388.53125 L886.0625,387.46875 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>
