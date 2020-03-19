@@ -40,6 +40,10 @@ article, aside, figcaption, figure, footer, header, hgroup, nav, section, time {
   display: block;
 }
 
+fieldset {
+  padding: 0;
+}
+
 address, dl, ol, ul, p, pre {
   margin: 0;
 }

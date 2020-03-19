@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Planning forms</title>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body class="planning">
+    @@include("../../blocks/modules/header/header.html")
+
+    <div class="planning__content content">
+        <h2 class="planning__title">
+            Планирование и контроль деятельности проекта
+        </h2>
+        <div class="planning__forms">
+            <form class="planning__form">
+                <fieldset class="planning__fieldset">
+                    <div class="planning__fieldsetLabel">
+                        Какие механизмы планирования будете использовать (на данном этапе)?
+                    </div>
+                    <ul>
+                        <li>
+                            <input class="planning__input" type="checkbox" id="business-plan" name="what-mechs" value="business-plan">
+                            <label class="planning__inputLabel planning__inputLabel--checkbox" for="business-plan">Бизнес-план</label>
+                            <div class="planning__tip">
+                                <img src="img/svg/question.svg" alt="Tip" class="planning__tipImage">
+                                <div class="planning__tipPopup">
+                                    БИЗНЕС-ПЛАН
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <input class="planning__input" type="checkbox" id="yearly-budget" name="what-mechs" value="yearly-budget">
+                            <label class="planning__inputLabel planning__inputLabel--checkbox" for="yearly-budget">Годовой бюджет</label>
+                            <div class="planning__tip">
+                                <img src="img/svg/question.svg" alt="Tip" class="planning__tipImage">
+                                <div class="planning__tipPopup">
+                                    ГОДОВОЙ БЮДЖЕТ
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </fieldset>
+                <fieldset class="planning__fieldset">
+                    <div class="planning__fieldsetLabel">
+                        Кто формирует эти документы (ответственный)?
+                    </div>
+                    <ul>
+                        <li>
+                            <input class="planning__input" type="radio" id="director" name="who-forms" value="director" checked>
+                            <label class="planning__inputLabel planning__inputLabel--radio" for="director">Директор</label>
+                        </li>
+                        <li>
+                            <input class="planning__input" type="radio" id="otherResponsible" name="who-forms" value="otherResponsible">
+                            <label class="planning__inputLabel planning__inputLabel--radio" for="otherResponsible">
+                                Другой
+                            </label>
+                        </li>
+                    </ul>
+                </fieldset>
+                <fieldset class="planning__fieldset">
+                    <div class="planning__fieldsetLabel">
+                        Как утверждаем эти документы?
+                    </div>
+                    <ul>
+                        <li>
+                            <input type="radio" class="planning__input" id="participants" name="how-accept" value="participants" checked>
+                            <label for="participants" class="planning__inputLabel planning__inputLabel--radio">
+                                Все участники (Собрание участников)
+                            </label>
+                            <div class="planning__tip">
+                                <img src="img/svg/question.svg" alt="Tip" class="planning__tipImage">
+                                <div class="planning__tipPopup">
+                                    УЧАСТНИКИ
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="radio" class="planning__input" id="committee" name="how-accept" value="committee">
+                            <label for="committee" class="planning__inputLabel planning__inputLabel--radio">
+                                Совет Директоров (если есть)
+                            </label>
+                            <div class="planning__tip">
+                                <img src="img/svg/question.svg" alt="Tip" class="planning__tipImage">
+                                <div class="planning__tipPopup">
+                                    СОВЕТ
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </fieldset>
+                <fieldset class="planning__fieldset">
+                    <div class="planning__fieldsetLabel">
+                        Как контролируем результаты?
+                    </div>
+                    <ul>
+                        <li>
+                            <input type="radio" class="planning__input" id="report-participants-monthly" name="how-controls" value="report-participants-monthly" checked>
+                            <label for="report-participants-monthly" class="planning__inputLabel planning__inputLabel--radio">
+                                Отчет директора участникам раз в месяц
+                            </label>
+                        </li>
+                        <li>
+                            <input type="radio" class="planning__input" id="report-committee-monthly" name="how-controls" value="report-committee-monthly">
+                            <label for="report-committee-monthly" class="planning__inputLabel planning__inputLabel--radio">
+                                Отчет совету директоров раз в месяц
+                            </label>
+                        </li>
+                        <li>
+                            <input type="radio" class="planning__input" id="report-participants-quarter" name="how-controls" value="report-participants-quarter">
+                            <label for="report-participants-quarter" class="planning__inputLabel planning__inputLabel--radio">
+                                Отчет директора участникам раз в квартал
+                            </label>
+                        </li>
+                        <li>
+                            <input type="radio" class="planning__input" id="report-committee-quarter" name="how-controls" value="report-committee-quarter">
+                            <label for="report-committee-quarter" class="planning__inputLabel planning__inputLabel--radio">
+                                Отчет директора СД раз в квартал
+                            </label>
+                        </li>
+                    </ul>
+                </fieldset>
+                <fieldset class="planning__fieldset">
+                    <div class="planning__fieldsetLabel">
+                        Укажите ключевые параметры проекта
+                        <div class="planning__tip">
+                            <img src="img/svg/question.svg" alt="Tip" class="planning__tipImage">
+                            <div class="planning__tipPopup">
+                                Ключевые параметры проекта
+                            </div>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>
+                            <input type="checkbox" class="planning__input" id="revenue" name="key-params" value="revenue">
+                            <label for="revenue" class="planning__inputLabel planning__inputLabel--checkbox">
+                                Выручка
+                            </label>
+                            <div class="planning__tip">
+                                <img src="img/svg/question.svg" alt="Tip" class="planning__tipImage">
+                                <div class="planning__tipPopup">
+                                    Выручка
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="planning__input" id="ebitda" name="key-params" value="ebitda">
+                            <label for="ebitda" class="planning__inputLabel planning__inputLabel--checkbox">
+                                EBITDA
+                            </label>
+                            <div class="planning__tip">
+                                <img src="img/svg/question.svg" alt="Tip" class="planning__tipImage">
+                                <div class="planning__tipPopup">
+                                    EBITDA
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="planning__input" id="clear-profit" name="key-params" value="clear-profit">
+                            <label for="clear-profit" class="planning__inputLabel planning__inputLabel--checkbox">
+                                Чистая прибыль
+                            </label>
+                            <div class="planning__tip">
+                                <img src="img/svg/question.svg" alt="Tip" class="planning__tipImage">
+                                <div class="planning__tipPopup">
+                                    Чистая прибыль
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="planning__input js-checkbox-other" id="otherKeys" name="key-params" value="otherKeys">
+                            <label for="otherKeys" class="planning__inputLabel planning__inputLabel--checkbox">
+                                Иное
+                            </label>
+                        </li>
+                    </ul>
+                </fieldset>
+                <fieldset class="planning__fieldset hided js-hiding-fieldset">
+                    <div class="planning__fieldsetLabel">
+                        Иные параметры для оценки
+                    </div>
+                    <textarea class="planning__textarea" name="other-params" placeholder="Введите иные договоренности"></textarea>
+                </fieldset>
+            </form>
+        </div>
+        <div class="planning__buttons">
+            <button class="planning__button planning__button--cancel">
+                Отменить
+            </button>
+            <button class="planning__button planning__button--save">
+                Сохранить
+            </button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="../js/vendor.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
