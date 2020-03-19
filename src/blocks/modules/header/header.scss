@@ -1,6 +1,7 @@
 .header {
   height: 70px;
   border-bottom: 2px solid $light-grey;
+  padding: 0 72px 0 75px;
 }
 
 .header__content {
@@ -8,6 +9,11 @@
   height: 100%;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+
+  &.content {
+    max-width: 947px;
+  }
 }
 
 .header__logo {
@@ -18,6 +24,10 @@
   vertical-align: middle;
   font: bold 24px $font-circe;
   line-height: 70px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .header__cross {
