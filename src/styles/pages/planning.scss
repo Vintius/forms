@@ -1,5 +1,6 @@
 .planning {
   font: 14px $font-circe;
+  overflow-x: hidden;
 }
 
 .planning__content {
@@ -39,10 +40,20 @@
     list-style: none;
   }
 
+  li {
+    white-space: nowrap;
+  }
+
   &:last-child {
 
     .planning__fieldsetLabel {
       margin-top: 6px;
+    }
+  }
+
+  &:nth-child(5) {
+    .planning__fieldsetLabel .planning__tip {
+      display: inline;
     }
   }
 }
@@ -116,19 +127,74 @@
 .planning__tip {
   display: inline-block;
   vertical-align: top;
+  position: relative;
+  width: 200%;
 }
 
 .planning__tipImage {
   vertical-align: middle;
+  cursor: pointer;
+  fill: transparent;
+  transition: fill $transition-norm;
+
+  path {
+    fill: $blue;
+  }
+
+  &:hover {
+    fill: $blue;
+
+    path {
+      fill: $white;
+    }
+  }
 }
 
 .planning__tipPopup {
   display: none;
+  position: absolute;
+  bottom: 35px;
+  left: -22px;
+  max-width: 348px;
+  border-radius: 3px;
+  box-shadow: 0 0 14px 0 rgba(0, 77, 255, 0.1);
+  background: $white;
+  white-space: normal;
+  padding: 16px;
+
+  &:after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    transform: rotateZ(45deg);
+    position: absolute;
+    left: 20px;
+    bottom: -10px;
+    background: $white;
+    box-shadow: 0 0 14px 0 rgba(0, 77, 255, 0.1);
+  }
+
+  &:before {
+    content: '';
+    background: $white;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    bottom: 0;
+    left: 14px;
+    z-index: 50;
+  }
+}
+
+.planning__tipPopupText {
+  z-index: 100;
+  position: relative;
 }
 
 .planning__textarea {
-  width: 428px;
-  height: 129px;
+  width: 100%;
+  min-height: 129px;
+  max-width: 428px;
   background: $grey;
   padding: 10px;
   vertical-align: middle;
@@ -168,7 +234,7 @@
   }
 
   &--save {
-    background-color: #4174d7;
+    background-color: $blue;
     color: $white;
 
     &:hover {

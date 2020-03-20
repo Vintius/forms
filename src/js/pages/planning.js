@@ -6,3 +6,12 @@ let $otherCheckbox = $('.js-checkbox-other'),
 $otherCheckbox.on("change", function() {
     $hidingFieldset.slideToggle();
 });
+
+//tooltip
+
+let $tipImage = $('.js-tip-image'),
+    $tipPopup = $('.js-tip-popup');
+
+$tipImage.on('click', function (e) {
+    $(this).next($tipPopup).slideToggle();
+});
