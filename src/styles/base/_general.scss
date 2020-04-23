@@ -26,3 +26,21 @@ h1, h2, h3, h4, h5, h6, ul {
 button {
     cursor: pointer;
 }
+
+.slide-fade-enter-active, .slide-fade-leave-active {
+    transition:
+            opacity $transition-norm,
+            max-height 0.5s,
+            padding 0.5s,
+            margin 0.5s;
+}
+
+.slide-fade-enter, .slide-fade-leave-to {
+    opacity: 0 !important;
+    max-height: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    overflow: hidden !important;
+}

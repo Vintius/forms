@@ -65,6 +65,9 @@
     },
     "dependencies": {
         "jquery": "^3.4.1",
-        "smart-grid": "^2.1.2"
+        "smart-grid": "^2.1.2",
+        "vue": "^2.6.11",
+        "vue-slider-component": "^3.1.2",
+        "vuejs-datepicker": "^1.6.2"
     }
 }

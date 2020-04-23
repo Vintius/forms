@@ -23,12 +23,643 @@
         <link rel="apple-touch-icon" sizes="167x167" href="../img/favicons/apple-touch-icon-167x167.png">
         <link rel="apple-touch-icon" sizes="180x180" href="../img/favicons/apple-touch-icon-180x180.png">
         <link rel="apple-touch-icon" sizes="1024x1024" href="../img/favicons/apple-touch-icon-1024x1024.png">
-        <link rel="stylesheet" href="../styles/main.css">
+        <link rel="stylesheet" href="styles/main.css">
 
     </head>
-    <body>
+    <body class="mainForm">
+        @@include("../blocks/modules/header/header.html")
+        <div class="mainForm__content content" id="main-form">
+            <h1 class="mainForm__title">
+                Финансирование проекта
+            </h1>
+            <div class="mainForm__desc">
+                Кто инвестирует в проект, и на каких условиях
+            </div>
+            <div class="mainForm__stagesBox"
+                 :class="{'mainForm__stagesBox--lastStage': lastStage}">
+                <div class="mainForm__stageBox">
+                    <div class="mainForm__stageImage">1</div>
+                    <p class="mainForm__stageImageText">Этапы финансирования</p>
+                </div>
+                <div class="mainForm__stageBoxLine"></div>
+                <div class="mainForm__stageBox">
+                    <div class="mainForm__stageImage mainForm__stageImage--second">2</div>
+                    <p class="mainForm__stageImageText">Иные договоренности</p>
+                </div>
+            </div>
+            <div class="mainForm__firstStage" v-if="!lastStage">
+                <transition-group name="slide-fade">
+                    <div class="mainForm__step"
+                         :class="{'mainForm__step--saved': finStep.isSaved}"
+                         v-for="(finStep, finStepIndex) in finSteps"
+                         :key="finStep + '_' + finStepIndex">
+                        <div class="mainForm__stepContent">
+                            <h2 class="mainForm__boxTitle">
+                                Участники финансирования
+                            </h2>
+                            <p class="mainForm__boxDesc" v-if="!finStep.isSaved">
+                                Выберите кто будет инвестировать из участников проекта
+                            </p>
+                            <p class="mainForm__boxDesc" v-else>
+                                Финансирует {{ finStep.checkedParticipants.map(function(item) {
+                                                    return item.split(' ').reverse().join(' ')
+                                                }).join(', ').replace(/,(?=[^,]*$)/, ' и') }}
+                            </p>
+                            <button class="mainForm__stepRemove" type="button"
+                                    v-if="finSteps.length > 1"
+                                    @click="[finSteps.splice(finStepIndex, 1), updateStepsSaved()]">
+                                            <span class="mainForm__buttonText">
+                                                УДАЛИТЬ ЭТАП
+                                            </span>
+                            </button>
+                            <transition name="slide-fade">
+                                <div class="mainForm__participants" v-if="finStep.isSaved === false">
+                                    <div class="mainForm__participant"
+                                         v-for="(participant, participantIndex) in finStep.participantsProps"
+                                         :key="participantsNames[participantIndex]">
+                                        <div class="mainForm__participantHeader">
+                                            <input type="checkbox"
+                                                   class="mainForm__participantHeaderCheckbox"
+                                                   :id="'participantCheckbox_' + finStepIndex + '_' + participantIndex"
+                                                   :value="participantsNames[participantIndex]"
+                                                   v-model="finStep.checkedParticipants">
+                                            <label :for="'participantCheckbox_' + finStepIndex + '_' + participantIndex"
+                                                   class="mainForm__participantHeaderLabel">
+                                                {{ participantsNames[participantIndex] }}
+                                            </label>
+                                        </div>
+                                        <transition name="slide-fade">
+                                            <div class="mainForm__participantProps"
+                                                 v-if="finStep.checkedParticipants.indexOf(participantsNames[participantIndex]) > -1">
+                                                <div class="mainForm__participantFieldset">
+                                                    <div class="mainForm__participantFieldsetTitle">
+                                                        Нужно ли выполнить условия для начала финансирования?
+                                                    </div>
+                                                    <div class="mainForm__participantInputs">
+                                                        <ul>
+                                                            <li>
+                                                                <input type="radio"
+                                                                       class="mainForm__participantInputRadio"
+                                                                       :id='"doneConditions_notNeed_" + finStepIndex + "_" + participantIndex'
+                                                                       :value=false
+                                                                       v-model="participant.doneConditions">
+                                                                <label :for='"doneConditions_notNeed_" + finStepIndex + "_" + participantIndex'
+                                                                       class="mainForm__participantInputLabel">
+                                                                    Не нужно
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <input type="radio"
+                                                                       class="mainForm__participantInputRadio"
+                                                                       :id="'doneConditions_need_' + finStepIndex + '_' + participantIndex"
+                                                                       :value=true
+                                                                       v-model="participant.doneConditions">
+                                                                <label :for="'doneConditions_need_' + finStepIndex + '_' + participantIndex"
+                                                                       class="mainForm__participantInputLabel">
+                                                                    Нужно
+                                                                </label>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <transition name="slide-fade">
+                                                    <div class="mainForm__participantFieldset"
+                                                         v-if="participant.doneConditions">
+                                                        <div class="mainForm__participantFieldsetTitle mainForm__participantFieldsetTitle--text">
+                                                            Условия начала финансирования
+                                                        </div>
+                                                        <div class="mainForm__participantInputs mainForm__participantInputs--block">
+                                                            <transition-group name="slide-fade">
+                                                                <input type="text"
+                                                                       class="mainForm__participantInputText"
+                                                                       placeholder="Введите условие начала финансирования"
+                                                                       v-for="(finCondition, finConditionIndex) in participant.finConditions"
+                                                                       v-model="finCondition.value"
+                                                                       :key="'finCondition_' + finConditionIndex">
+                                                            </transition-group>
+                                                            <button class="mainForm__participantItemButton mainForm__participantItemButton--add"
+                                                                    @click.prevent="addItem(participant.finConditions)"
+                                                                    type="button">
+                                                                ДОБАВИТЬ ЕЩЕ УСЛОВИЕ
+                                                            </button
+                                                            ><transition name="slide-fade"
+                                                            ><button class="mainForm__participantItemButton mainForm__participantItemButton--remove"
+                                                                        v-if="participant.finConditions.length > 1"
+                                                                        @click.prevent="participant.finConditions.pop()"
+                                                                        type="button">
+                                                                    УДАЛИТЬ УСЛОВИЕ
+                                                                </button>
+                                                            </transition>
+                                                        </div>
+                                                    </div>
+                                                </transition>
+                                                <div class="mainForm__participantFieldset">
+                                                    <div class="mainForm__participantFieldsetTitle mainForm__participantFieldsetTitle--text">
+                                                        Сумма и валюта финансирования
+                                                    </div>
+                                                    <div class="mainForm__participantInputs">
+                                                        <input type="number"
+                                                               class="mainForm__participantInputText mainForm__participantInputText--half"
+                                                               placeholder="Введите сумму"
+                                                               v-model="participant.finAmount">
+                                                        <div class="mainForm__participantSelect">
+                                                            <select v-model="participant.finCurrency">
+                                                                <option disabled class="mainForm__participantOption"
+                                                                        value=undefined>
+                                                                    Выберите валюту
+                                                                </option>
+                                                                <option class="mainForm__participantOption"
+                                                                        value="rubles">
+                                                                    Рублей
+                                                                </option>
+                                                                <option class="mainForm__participantOption"
+                                                                        value="dollars">
+                                                                    Долларов
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mainForm__participantFieldset">
+                                                    <div class="mainForm__participantFieldsetTitle">
+                                                        Порядок внесения денежных средств
+                                                    </div>
+                                                    <div class="mainForm__participantInputs">
+                                                        <ul>
+                                                            <li>
+                                                                <input type="radio"
+                                                                       class="mainForm__participantInputRadio"
+                                                                       :id="'orderEntry_once_' + finStepIndex + '_' + participantIndex"
+                                                                       v-model="participant.orderEntry"
+                                                                       value="once">
+                                                                <label :for="'orderEntry_once_' + finStepIndex + '_' + participantIndex"
+                                                                       class="mainForm__participantInputLabel mainForm__participantInputLabel--radio">
+                                                                    Единовременно
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <input type="radio"
+                                                                       class="mainForm__participantInputRadio"
+                                                                       :id="'orderEntry_tranche_' + finStepIndex + '_' + participantIndex"
+                                                                       v-model="participant.orderEntry"
+                                                                       value="tranches">
+                                                                <label :for="'orderEntry_tranche_' + finStepIndex + '_' + participantIndex"
+                                                                       class="mainForm__participantInputLabel mainForm__participantInputLabel--radio">
+                                                                    Траншами
+                                                                </label>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <transition name="slide-fade">
+                                                    <div class="mainForm__participantFieldset"
+                                                         v-if="participant.orderEntry=='tranches'">
+                                                        <div class="mainForm__participantFieldsetTitle mainForm__participantFieldsetTitle--text">
+                                                            Выберите суммы и даты траншей
+                                                        </div>
+                                                        <div class="mainForm__participantInputs mainForm__participantInputs--block">
+                                                            <ul>
+                                                                <transition-group name="slide-fade">
+                                                                    <li v-for="(tranche, trancheIndex) in participant.tranches"
+                                                                        :key="'tranche_' + trancheIndex">
+                                                                        <input type="number"
+                                                                               class="mainForm__participantInputText mainForm__participantInputText--half"
+                                                                               :placeholder="'Сумма' + placeholderCounts(trancheIndex, 'genitive') + ' транша'"
+                                                                               v-model="tranche.trancheAmount"
+                                                                        >
+                                                                        <datepicker
+                                                                                input-class="mainForm__participantInputDate"
+                                                                                :placeholder="'Сумма' + placeholderCounts(trancheIndex, 'genitive') + ' транша'"
+                                                                                v-model="tranche.trancheDate"
+                                                                                :monday-first=true
+                                                                                :language=ru
+                                                                                :calendar-button=true
+                                                                                calendar-button-icon='mainForm__participantInputDateButton'>
+                                                                        </datepicker>
+                                                                    </li>
+                                                                </transition-group>
+                                                            </ul>
+                                                            <button class="mainForm__participantItemButton mainForm__participantItemButton--add"
+                                                                    type="button"
+                                                                    @click="addItem(participant.tranches)">
+                                                                ДОБАВИТЬ ЕЩЕ ТРАНШ
+                                                            </button
+                                                            ><button class="mainForm__participantItemButton mainForm__participantItemButton--remove"
+                                                                    type="button"
+                                                                    v-if="participant.tranches.length > 2"
+                                                                    @click="participant.tranches.pop()">
+                                                                УДАЛИТЬ ТРАНШ
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </transition>
+                                                <div class="mainForm__participantFieldset">
+                                                    <div class="mainForm__participantFieldsetTitle">
+                                                        Форма финансирования
+                                                    </div>
+                                                    <div class="mainForm__participantInputs">
+                                                        <ul>
+                                                            <li>
+                                                                <input type="radio"
+                                                                       class="mainForm__participantInputRadio"
+                                                                       :id="'finForm_cashIn_' + finStepIndex + '_' + participantIndex"
+                                                                       v-model="participant.finForm"
+                                                                       value="cashIn">
+                                                                <label :for="'finForm_cashIn_' + finStepIndex + '_' + participantIndex"
+                                                                       class="mainForm__participantInputLabel mainForm__participantInputLabel--radio">
+                                                                    В капитал(cash-in)
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                <input type="radio"
+                                                                       class="mainForm__participantInputRadio"
+                                                                       :id="'finForm_loan_' + finStepIndex + '_' + participantIndex"
+                                                                       v-model="participant.finForm"
+                                                                       value="loan">
+                                                                <label :for="'finForm_loan_' + finStepIndex + '_' + participantIndex"
+                                                                       class="mainForm__participantInputLabel mainForm__participantInputLabel--radio">
+                                                                    Заемное финансирование
+                                                                </label>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <transition-group name="slide-fade">
+                                                    <div class="mainForm__participantFieldset"
+                                                         v-if='participant.finForm === "loan"'
+                                                         key="loanPercent">
+                                                        <div class="mainForm__participantFieldsetTitle">
+                                                            Выберите процентную ставку и срок займа
+                                                        </div>
+                                                        <div class="mainForm__participantInputs">
+                                                            <input type="number"
+                                                                   class="mainForm__participantInputText mainForm__participantInputText--half"
+                                                                   placeholder="Процентная ставка"
+                                                                   v-model="participant.loanPercent">
+                                                            <input type="text"
+                                                                   class="mainForm__participantInputText mainForm__participantInputText--half"
+                                                                   placeholder="Срок займа"
+                                                                   v-model="participant.loanPeriod">
+                                                        </div>
+                                                    </div>
+                                                    <div v-if='participant.finForm === "loan"'
+                                                         class="mainForm__participantFieldset"
+                                                         key="loanType">
+                                                        <div class="mainForm__participantFieldsetTitle">
+                                                            Вид займа
+                                                        </div>
+                                                        <div class="mainForm__participantInputs">
+                                                            <ul>
+                                                                <li>
+                                                                    <input type="radio"
+                                                                           class="mainForm__participantInputRadio"
+                                                                           :id="'loan_noPurpose_' + finStepIndex + '_' + participantIndex"
+                                                                           v-model="participant.loanType"
+                                                                           value="noPurpose">
+                                                                    <label :for="'loan_noPurpose_' + finStepIndex + '_' + participantIndex"
+                                                                           class="mainForm__participantInputLabel mainForm__participantInputLabel--radio">
+                                                                        Нецелевой
+                                                                    </label>
+                                                                </li>
+                                                                <li>
+                                                                    <input type="radio"
+                                                                           class="mainForm__participantInputRadio"
+                                                                           :id="'loan_purpose' + finStepIndex + '_' + participantIndex"
+                                                                           v-model="participant.loanType"
+                                                                           value="purpose">
+                                                                    <label :for="'loan_purpose' + finStepIndex + '_' + participantIndex"
+                                                                           class="mainForm__participantInputLabel mainForm__participantInputLabel--radio">
+                                                                        Целевой
+                                                                    </label>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div v-if='participant.finForm === "loan" && participant.loanType === "purpose"'
+                                                         class="mainForm__participantFieldset"
+                                                         key="loanPoint">
+                                                        <div class="mainForm__participantFieldsetTitle mainForm__participantFieldsetTitle--text">
+                                                            Укажите цель займа
+                                                        </div>
+                                                        <div class="mainForm__participantInputs">
+                                                            <input type="text"
+                                                                   class="mainForm__participantInputText"
+                                                                   placeholder="Введите цель займа">
+                                                        </div>
+                                                    </div>
+                                                    <div v-if='participant.finForm === "loan" && participant.loanType === "purpose"'
+                                                         class="mainForm__participantFieldset"
+                                                         key="loanConvert">
+                                                        <div class="mainForm__participantFieldsetTitle">
+                                                            Возможна конвертация в доли/акции проекта?
+                                                        </div>
+                                                        <div class="mainForm__participantInputs">
+                                                            <ul>
+                                                                <li>
+                                                                    <input type="radio"
+                                                                           class="mainForm__participantInputRadio"
+                                                                           :id="'convertPossible_true' + finStepIndex + '_' + participantIndex"
+                                                                           v-model="participant.convertPossible"
+                                                                           :value=true>
+                                                                    <label :for="'convertPossible_true' + finStepIndex + '_' + participantIndex"
+                                                                           class="mainForm__participantInputLabel mainForm__participantInputLabel--radio">
+                                                                        Возможна
+                                                                    </label>
+                                                                </li>
+                                                                <li>
+                                                                    <input type="radio"
+                                                                           class="mainForm__participantInputRadio"
+                                                                           :id="'convertPossible_false' + finStepIndex + '_' + participantIndex"
+                                                                           v-model="participant.convertPossible"
+                                                                           :value=false>
+                                                                    <label :for="'convertPossible_false' + finStepIndex + '_' + participantIndex"
+                                                                           class="mainForm__participantInputLabel mainForm__participantInputLabel--radio">
+                                                                        Невозможна
+                                                                    </label>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </transition-group>
+                                            </div>
+                                        </transition>
+                                    </div>
+                                </div>
+                            </transition>
+                            <div class="mainForm__buttons" v-if="!finStep.isSaved">
+                                <button class="mainForm__button mainForm__button--blue"
+                                        type="button"
+                                        @click="[saveForm(finStepIndex), updateStepsSaved()]">
+                                    СОХРАНИТЬ
+                                </button>
+                                <button class="mainForm__button" type="button"
+                                        @click="clearForm(finStepIndex)">
+                                    СБРОСИТЬ ФОРМУ
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mainForm__participantFieldset mainForm__participantFieldset--after"
+                             v-if="finStep.isSaved">
+                            <div class="mainForm__participantFieldsetTitle">
+                                Меняется ли распределение долей после финансирования?
+                            </div>
+                            <div class="mainForm__participantInputs">
+                                <ul>
+                                    <li>
+                                        <input type="radio"
+                                               class="mainForm__participantInputRadio"
+                                               :id="'isChangingAfter_false' + finStepIndex"
+                                               v-model="finStep.isChangingAfter"
+                                               :value=false>
+                                        <label :for="'isChangingAfter_false' + finStepIndex"
+                                               class="mainForm__participantInputLabel mainForm__participantInputLabel--radio">
+                                            Не меняются
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input type="radio"
+                                               class="mainForm__participantInputRadio"
+                                               :id="'isChangingAfter_true' + finStepIndex"
+                                               v-model="finStep.isChangingAfter"
+                                               :value=true>
+                                        <label :for="'isChangingAfter_true' + finStepIndex"
+                                               class="mainForm__participantInputLabel mainForm__participantInputLabel--radio">
+                                            Меняется
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <transition name="slide-fade">
+                            <div class="mainForm__participantFieldset mainForm__participantFieldset--after"
+                                 v-if="finStep.isSaved && finStep.isChangingAfter">
+                                <div class="mainForm__participantFieldsetTitle">
+                                    Выберите изменение долей
+                                </div>
+                                <div class="mainForm__participantInputs">
+                                    <ul class="mainForm__changingProportions">
+                                        <li v-for="(range, rangeIndex) in finStep.checkedParticipants">
+                                            {{ finStep.checkedParticipants[rangeIndex].split(' ').reverse().join(' ') }}<br>
+                                            <div class="mainForm__rangeInputs">
+                                                <input class="mainForm__rangeInputText" type="number"
+                                                       pattern="[0-9]{1,3}"
+                                                       v-model="finStep.ranges[rangeIndex]"
+                                                       min="0" max="100"
+                                                       @input="updateRanges(finStepIndex, rangeIndex)">
+                                                <vue-slider class="mainForm__rangeInput"
+                                                            v-model="finStep.ranges[rangeIndex]"
+                                                            :dot-size="20"
+                                                            :height="5"
+                                                            :disabled="finStep.lockFlags[rangeIndex]"
+                                                            tooltip="none"
+                                                            :ref="'sliders_' + finStepIndex"
+                                                            @change="updateRanges(finStepIndex, rangeIndex)">
+                                                </vue-slider>
+                                            </div>
+                                            <button class="mainForm__rangeLock" type="button"
+                                                    :class="{'mainForm__rangeLock--closed': finStep.lockFlags[rangeIndex]}"
+                                                    @click="this.mainForm.$set(finStep.lockFlags, rangeIndex, !finStep.lockFlags[rangeIndex])">
+                                                <img src="img/svg/lock_black.svg"
+                                                     alt="lock opened"
+                                                     class="mainForm__rangeLockImage"
+                                                     v-if="!finStep.lockFlags[rangeIndex]">
+                                                <img src="img/svg/lock_white_closed.svg"
+                                                     alt="lock closed"
+                                                     class="mainForm__rangeLockImage"
+                                                     v-if="finStep.lockFlags[rangeIndex]">
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </transition>
+                        <div class="mainForm__stepEdits" v-if="finStep.isSaved">
+                            <button type="button" class="mainForm__stepEditsButton"
+                                    @click="[finStep.isSaved = !finStep.isSaved, updateStepsSaved()]">
+                                <img class="mainForm__buttonImage" src="img/svg/pencil.svg" alt=""
+                                ><span class="mainForm__buttonText">РЕДАКТИРОВАТЬ ЭТАП</span>
+                            </button>
+                            <button type="button" class="mainForm__stepEditsButton"
+                                    v-show="finSteps.length > 1"
+                                    @click="[finSteps.splice(finStepIndex, 1), updateStepsSaved()]">
+                                <img class="mainForm__buttonImage" src="img/svg/basket_red.svg" alt=""
+                                ><span class="mainForm__buttonText">УДАЛИТЬ ЭТАП</span>
+                            </button>
+                        </div>
+                    </div>
+                </transition-group>
+                <div class="mainForm__addStep mainForm__step" v-if="isStepsSaved">
+                    <div class="mainForm__stepContent">
+                        <div class="mainForm__addStepTitle">
+                            Добавить {{ placeholderCounts(finSteps.length, 'nominative') }} этап финансирования?
+                        </div>
+                        <div class="mainForm__addStepSubtitle">
+                            Вы можете добавить следующий этап финансирования, по аналогии с первым.
+                        </div>
+                    </div>
+                    <button class="mainForm__stepEditsButton mainForm__stepEditsButton--no-border"
+                            type="button"
+                            @click="[addStep(), updateStepsSaved()]">
+                        <img class="mainForm__buttonImage" src="img/svg/plus_blue.svg" alt="">
+                        <span class="mainForm__buttonText">ДОБАВИТЬ ЕЩЕ ЭТАП</span>
+                    </button>
+                </div>
+            </div>
+            <div class="mainForm__lastStage" v-if="lastStage">
+                <div class="mainForm__step">
+                    <div class="mainForm__participantFieldset mainForm__participantFieldset--after mainForm__participantFieldset--no-border">
+                        <div class="mainForm__participantFieldsetTitle">
+                            Добавить принципы непредвиденного финансирования?
+                        </div>
+                        <div class="mainForm__participantInputs">
+                            <ul>
+                                <li>
+                                    <input type="radio" id="allowUnexpectedFin_no"
+                                           class="mainForm__participantInputRadio mainForm__participantInputRadio--small"
+                                           :value=false
+                                           v-model="lastStageProps.allowUnexpectedFin">
+                                    <label for="allowUnexpectedFin_no" class="mainForm__participantInputLabel">
+                                        Нет
+                                    </label>
+                                </li>
+                                <li>
+                                    <input type="radio" id="allowUnexpectedFin_yes"
+                                           class="mainForm__participantInputRadio mainForm__participantInputRadio--small"
+                                           :value=true
+                                           v-model="lastStageProps.allowUnexpectedFin">
+                                    <label for="allowUnexpectedFin_yes" class="mainForm__participantInputLabel">
+                                        Да
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <transition-group name="slide-fade">
+                        <template v-if="lastStageProps.allowUnexpectedFin">
+                            <div class="mainForm__participantFieldset mainForm__participantFieldset--after mainForm__participantFieldset--no-border"
+                                    key="allowUnexpectedFin">
+                                <div class="mainForm__participantFieldsetTitle">
+                                    Принципы непредвиденного финансирования
+                                    <span class="mainForm__participantFieldsetTitleTooltipBox">
+                                        <question-image></question-image>
+                                        <div class="mainForm__participantFieldsetTitleTooltip">
+                                            <p>
+                                                Текст подсказки
+                                            </p>
+                                        </div>
+                                    </span>
+                                </div>
+                                <div class="mainForm__participantInputs">
+                                    <ul>
+                                        <li>
+                                            <input type="radio" id="unexpectedFin_proportional"
+                                                   class="mainForm__participantInputRadio mainForm__participantInputRadio--small"
+                                                   value="proportional"
+                                                   v-model="lastStageProps.unexpectedFin">
+                                            <label for="unexpectedFin_proportional"
+                                                   class="mainForm__participantInputLabel">
+                                                    <span>
+                                                        Финансирование проекта осуществляется участниками пропорционально долям
+                                                    </span>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="allowUnexpectedFin_other"
+                                                   class="mainForm__participantInputRadio mainForm__participantInputRadio--small"
+                                                   value='other'
+                                                   v-model="lastStageProps.unexpectedFin">
+                                            <label for="allowUnexpectedFin_other"
+                                                   class="mainForm__participantInputLabel">
+                                                Иной порядок
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mainForm__participantFieldset mainForm__participantFieldset--after mainForm__participantFieldset--no-border"
+                                 key="unexpectedFin">
+                                <div class="mainForm__participantFieldsetTitle">
+                                    Введите иной порядок
+                                    <span class="mainForm__participantFieldsetTitleTooltipBox">
+                                                                            <question-image></question-image>
+                                                                            <div class="mainForm__participantFieldsetTitleTooltip">
+                                                                                <p>
+                                                                                    Текст подсказки
+                                                                                </p>
+                                                                            </div>
+                                                                        </span>
+                                </div>
+                                <div class="mainForm__participantInputs">
+                                    <input type="text"
+                                           class="mainForm__participantInputText"
+                                           placeholder="Введите порядок непредвиденного финансирования"
+                                           v-model="lastStageProps.unexpectedFinOrder">
+                                </div>
+                            </div>
+                        </template>
+                    </transition-group>
+                    <div class="mainForm__participantFieldset mainForm__participantFieldset--after mainForm__participantFieldset--no-border">
+                        <div class="mainForm__participantFieldsetTitle">
+                            Добавить иные договоренности в отношении финансирования?
+                        </div>
+                        <div class="mainForm__participantInputs">
+                            <ul>
+                                <li>
+                                    <input type="radio" id="addOtherAgreements_no"
+                                           class="mainForm__participantInputRadio mainForm__participantInputRadio--small"
+                                           :value=false
+                                           v-model="lastStageProps.addOtherAgreements">
+                                    <label for="addOtherAgreements_no" class="mainForm__participantInputLabel">
+                                        Нет
+                                    </label>
+                                </li>
+                                <li>
+                                    <input type="radio" id="addOtherAgreements_yes"
+                                           class="mainForm__participantInputRadio mainForm__participantInputRadio--small"
+                                           :value=true
+                                           v-model="lastStageProps.addOtherAgreements">
+                                    <label for="addOtherAgreements_yes" class="mainForm__participantInputLabel">
+                                        Да
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <transition name="slide-fade">
+                        <div class="mainForm__participantFieldset mainForm__participantFieldset--after mainForm__participantFieldset--no-border"
+                             v-if="lastStageProps.addOtherAgreements">
+                            <div class="mainForm__participantFieldsetTitle">
+                                Иные договоренности в отношении финансирования
+                            </div>
+                            <div class="mainForm__participantInputs">
+                                <textarea type="text" class="mainForm__inputArea"
+                                          placeholder="Введите иные договоренности"
+                                          v-model="lastStageProps.otherAgreements">
+                                </textarea>
+                            </div>
+                        </div>
+                    </transition>
+                </div>
+            </div>
+            <div class="mainForm__stagesButtons">
+                <button class="mainForm__button"
+                        @click="function(){if (lastStage) lastStage = false}">
+                    ОТМЕНИТЬ
+                </button>
+                <button class="mainForm__button mainForm__button--blue"
+                        v-if="!lastStage"
+                        :disabled="!isStepsSaved"
+                        @click="lastStage = true">
+                    СЛЕДУЮЩИЙ ШАГ
+                </button>
+                <button class="mainForm__button mainForm__button--blue"
+                        v-if="lastStage">
+                    СОХРАНИТЬ
+                </button>
+            </div>
+        </div>
 
-        <script src="../js/main.js"></script>
-        <script src="../js/vendor.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/vendor.js"></script>
     </body>
 </html>
