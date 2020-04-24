@@ -577,17 +577,18 @@
                                 </div>
                             </div>
                             <div class="mainForm__participantFieldset mainForm__participantFieldset--after mainForm__participantFieldset--no-border"
-                                 key="unexpectedFin">
+                                 key="unexpectedFin"
+                                 v-if="lastStageProps.unexpectedFin === 'other'">
                                 <div class="mainForm__participantFieldsetTitle">
                                     Введите иной порядок
                                     <span class="mainForm__participantFieldsetTitleTooltipBox">
-                                                                            <question-image></question-image>
-                                                                            <div class="mainForm__participantFieldsetTitleTooltip">
-                                                                                <p>
-                                                                                    Текст подсказки
-                                                                                </p>
-                                                                            </div>
-                                                                        </span>
+                                            <question-image></question-image>
+                                            <div class="mainForm__participantFieldsetTitleTooltip">
+                                                <p>
+                                                    Текст подсказки
+                                                </p>
+                                            </div>
+                                        </span>
                                 </div>
                                 <div class="mainForm__participantInputs">
                                     <input type="text"

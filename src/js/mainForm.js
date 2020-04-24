@@ -193,7 +193,7 @@ window.mainForm = new Vue({
         saveStage: function () {
             sessionStorage.data = JSON.stringify(this.$data, function (key, value) {
                 // debugger;
-                return (key == 'lastStage' || key == 'ru' || key == 'countList') ? undefined : value;
+                return (key == 'ru' || key == 'countList') ? undefined : value;
             });
         }
     },

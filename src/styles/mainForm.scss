@@ -531,8 +531,10 @@
   }
 }
 
-span .mainForm__participantFieldset {
-  margin-top: 40px;
+.mainForm__firstStage .mainForm__participantFieldset {
+  &:not(:first-child) {
+    margin-top: 40px;
+  }
 }
 
 .mainForm__buttons {
@@ -768,5 +770,17 @@ span .mainForm__participantFieldset {
     bottom: 0;
     left: 14px;
     z-index: 50;
+  }
+}
+
+.mainForm__lastStage {
+
+  .mainForm__step {
+    padding-bottom: 41px;
+  }
+
+  .mainForm__participantFieldset--after {
+    padding-top: 41px;
+    padding-bottom: 0;
   }
 }
