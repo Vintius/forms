@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Planning forms</title>
+    <link rel="stylesheet" href="styles/main.min.css">
+</head>
+<body class="planning">
+    <header class="header">
+    <div class="header__content content">
+        <img src="img/svg/logo.svg" alt="DealDep" class="header__logo">
+        <h1 class="header__title">
+            Новая договоренность
+        </h1>
+        <div class="header__cross">
+        </div>
+    </div>
+</header>
+
+    <div class="planning__content content">
+        <h2 class="planning__title">
+            Планирование и контроль деятельности проекта
+        </h2>
+        <div class="planning__forms">
+            <form class="planning__form">
+                <div class="planning__fieldset">
+                    <div class="planning__fieldsetLabel">
+                        Какие механизмы планирования будете использовать (на данном этапе)?
+                    </div>
+                    <ul>
+                        <li>
+                            <input class="planning__input" type="checkbox" id="business-plan" name="what-mechs" value="business-plan">
+                            <label class="planning__inputLabel planning__inputLabel--checkbox" for="business-plan">Бизнес-план</label>
+                            <div class="planning__tip">
+                                <svg class="planning__tipImage js-tip-image" width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g stroke="none" stroke-width="1">
+                                        <g transform="translate(-620.000000, -236.000000)">
+                                            <g transform="translate(620.000000, 236.000000)">
+                                                <circle stroke="#4174D7" cx="8.5" cy="8.5" r="8"></circle>
+                                                <path d="M8.195313,5.0028176 C6.984375,5.0692246 6,6.0848496 6,7.3192246 L7,7.3192246 C7,6.5067246 7.703125,5.8739116 8.558594,6.0223496 C9.175781,6.1278176 9.65625,6.7293806 9.640625,7.3582866 C9.621094,7.9168806 9.300781,8.2684426 8.820313,8.4754746 C8.527344,8.6082866 8.246094,8.7332866 8.007813,8.9832866 C7.769531,9.2332866 7.640625,9.6043806 7.640625,9.9989116 L8.640625,9.9989116 C8.640625,9.7762556 8.667969,9.7410996 8.730469,9.6746926 C8.792969,9.6082866 8.953125,9.5145366 9.226563,9.3934426 C9.972656,9.0653176 10.609375,8.3543806 10.640625,7.3895366 C10.671875,6.2528176 9.859375,5.2293806 8.726563,5.0340676 C8.546875,5.0028176 8.371094,4.9950056 8.195313,5.0028176 Z M7.640625,10.9989116 L7.640625,11.9989116 L8.640625,11.9989116 L8.640625,10.9989116 L7.640625,10.9989116 Z" id="Shape" fill-rule="nonzero"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <div class="planning__tipPopup js-tip-popup">
+                                    <div class="planning__tipPopupText">
+                                        БИЗНЕС-ПЛАН
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <input class="planning__input" type="checkbox" id="yearly-budget" name="what-mechs" value="yearly-budget">
+                            <label class="planning__inputLabel planning__inputLabel--checkbox" for="yearly-budget">Годовой бюджет</label>
+                            <div class="planning__tip">
+                                <svg class="planning__tipImage js-tip-image" width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g stroke="none" stroke-width="1">
+                                        <g transform="translate(-620.000000, -236.000000)">
+                                            <g transform="translate(620.000000, 236.000000)">
+                                                <circle stroke="#4174D7" cx="8.5" cy="8.5" r="8"></circle>
+                                                <path d="M8.195313,5.0028176 C6.984375,5.0692246 6,6.0848496 6,7.3192246 L7,7.3192246 C7,6.5067246 7.703125,5.8739116 8.558594,6.0223496 C9.175781,6.1278176 9.65625,6.7293806 9.640625,7.3582866 C9.621094,7.9168806 9.300781,8.2684426 8.820313,8.4754746 C8.527344,8.6082866 8.246094,8.7332866 8.007813,8.9832866 C7.769531,9.2332866 7.640625,9.6043806 7.640625,9.9989116 L8.640625,9.9989116 C8.640625,9.7762556 8.667969,9.7410996 8.730469,9.6746926 C8.792969,9.6082866 8.953125,9.5145366 9.226563,9.3934426 C9.972656,9.0653176 10.609375,8.3543806 10.640625,7.3895366 C10.671875,6.2528176 9.859375,5.2293806 8.726563,5.0340676 C8.546875,5.0028176 8.371094,4.9950056 8.195313,5.0028176 Z M7.640625,10.9989116 L7.640625,11.9989116 L8.640625,11.9989116 L8.640625,10.9989116 L7.640625,10.9989116 Z" id="Shape" fill-rule="nonzero"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <div class="planning__tipPopup js-tip-popup">
+                                    <div class="planning__tipPopupText">
+                                        ГОДОВОЙ БЮДЖЕТ
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="planning__fieldset">
+                    <div class="planning__fieldsetLabel">
+                        Кто формирует эти документы (ответственный)?
+                    </div>
+                    <ul>
+                        <li>
+                            <input class="planning__input" type="radio" id="director" name="who-forms" value="director" checked>
+                            <label class="planning__inputLabel planning__inputLabel--radio" for="director">
+                                Директор
+                            </label>
+                        </li>
+                        <li>
+                            <input class="planning__input" type="radio" id="otherResponsible" name="who-forms" value="otherResponsible">
+                            <label class="planning__inputLabel planning__inputLabel--radio" for="otherResponsible">
+                                Другой
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="planning__fieldset">
+                    <div class="planning__fieldsetLabel">
+                        Как утверждаем эти документы?
+                    </div>
+                    <ul>
+                        <li>
+                            <input type="radio" class="planning__input" id="participants" name="how-accept" value="participants" checked>
+                            <label for="participants" class="planning__inputLabel planning__inputLabel--radio">
+                                Все участники (Собрание участников)
+                            </label>
+                            <div class="planning__tip">
+                                <svg class="planning__tipImage js-tip-image" width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g stroke="none" stroke-width="1">
+                                        <g transform="translate(-620.000000, -236.000000)">
+                                            <g transform="translate(620.000000, 236.000000)">
+                                                <circle stroke="#4174D7" cx="8.5" cy="8.5" r="8"></circle>
+                                                <path d="M8.195313,5.0028176 C6.984375,5.0692246 6,6.0848496 6,7.3192246 L7,7.3192246 C7,6.5067246 7.703125,5.8739116 8.558594,6.0223496 C9.175781,6.1278176 9.65625,6.7293806 9.640625,7.3582866 C9.621094,7.9168806 9.300781,8.2684426 8.820313,8.4754746 C8.527344,8.6082866 8.246094,8.7332866 8.007813,8.9832866 C7.769531,9.2332866 7.640625,9.6043806 7.640625,9.9989116 L8.640625,9.9989116 C8.640625,9.7762556 8.667969,9.7410996 8.730469,9.6746926 C8.792969,9.6082866 8.953125,9.5145366 9.226563,9.3934426 C9.972656,9.0653176 10.609375,8.3543806 10.640625,7.3895366 C10.671875,6.2528176 9.859375,5.2293806 8.726563,5.0340676 C8.546875,5.0028176 8.371094,4.9950056 8.195313,5.0028176 Z M7.640625,10.9989116 L7.640625,11.9989116 L8.640625,11.9989116 L8.640625,10.9989116 L7.640625,10.9989116 Z" id="Shape" fill-rule="nonzero"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <div class="planning__tipPopup js-tip-popup">
+                                    <div class="planning__tipPopupText">
+                                        Понятие политического конфликта традиционно
+                                        ограничивает системный постиндустриализм,
+                                        говорится в докладе ОБСЕ. Наконец, субъект
+                                        политического процесса традиционно интегрирует марксизм.
+                                        Харизматическое лидерство верифицирует феномен толпы, на
+                                        что указывают и многие другие факторы.
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="radio" class="planning__input" id="committee" name="how-accept" value="committee">
+                            <label for="committee" class="planning__inputLabel planning__inputLabel--radio">
+                                Совет Директоров (если есть)
+                            </label>
+                            <div class="planning__tip">
+                                <svg class="planning__tipImage js-tip-image" width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g stroke="none" stroke-width="1">
+                                        <g transform="translate(-620.000000, -236.000000)">
+                                            <g transform="translate(620.000000, 236.000000)">
+                                                <circle stroke="#4174D7" cx="8.5" cy="8.5" r="8"></circle>
+                                                <path d="M8.195313,5.0028176 C6.984375,5.0692246 6,6.0848496 6,7.3192246 L7,7.3192246 C7,6.5067246 7.703125,5.8739116 8.558594,6.0223496 C9.175781,6.1278176 9.65625,6.7293806 9.640625,7.3582866 C9.621094,7.9168806 9.300781,8.2684426 8.820313,8.4754746 C8.527344,8.6082866 8.246094,8.7332866 8.007813,8.9832866 C7.769531,9.2332866 7.640625,9.6043806 7.640625,9.9989116 L8.640625,9.9989116 C8.640625,9.7762556 8.667969,9.7410996 8.730469,9.6746926 C8.792969,9.6082866 8.953125,9.5145366 9.226563,9.3934426 C9.972656,9.0653176 10.609375,8.3543806 10.640625,7.3895366 C10.671875,6.2528176 9.859375,5.2293806 8.726563,5.0340676 C8.546875,5.0028176 8.371094,4.9950056 8.195313,5.0028176 Z M7.640625,10.9989116 L7.640625,11.9989116 L8.640625,11.9989116 L8.640625,10.9989116 L7.640625,10.9989116 Z" id="Shape" fill-rule="nonzero"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <div class="planning__tipPopup js-tip-popup">
+                                    <div class="planning__tipPopupText">
+                                        СОВЕТ
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="planning__fieldset">
+                    <div class="planning__fieldsetLabel">
+                        Как контролируем результаты?
+                    </div>
+                    <ul>
+                        <li>
+                            <input type="radio" class="planning__input" id="report-participants-monthly" name="how-controls" value="report-participants-monthly" checked>
+                            <label for="report-participants-monthly" class="planning__inputLabel planning__inputLabel--radio">
+                                Отчет директора участникам раз в месяц
+                            </label>
+                        </li>
+                        <li>
+                            <input type="radio" class="planning__input" id="report-committee-monthly" name="how-controls" value="report-committee-monthly">
+                            <label for="report-committee-monthly" class="planning__inputLabel planning__inputLabel--radio">
+                                Отчет совету директоров раз в месяц
+                            </label>
+                        </li>
+                        <li>
+                            <input type="radio" class="planning__input" id="report-participants-quarter" name="how-controls" value="report-participants-quarter">
+                            <label for="report-participants-quarter" class="planning__inputLabel planning__inputLabel--radio">
+                                Отчет директора участникам раз в квартал
+                            </label>
+                        </li>
+                        <li>
+                            <input type="radio" class="planning__input" id="report-committee-quarter" name="how-controls" value="report-committee-quarter">
+                            <label for="report-committee-quarter" class="planning__inputLabel planning__inputLabel--radio">
+                                Отчет директора СД раз в квартал
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="planning__fieldset">
+                    <div class="planning__fieldsetLabel">
+                        Укажите ключевые параметры проекта
+                        <div class="planning__tip">
+                            <svg class="planning__tipImage js-tip-image" width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g stroke="none" stroke-width="1">
+                                    <g transform="translate(-620.000000, -236.000000)">
+                                        <g transform="translate(620.000000, 236.000000)">
+                                            <circle stroke="#4174D7" cx="8.5" cy="8.5" r="8"></circle>
+                                            <path d="M8.195313,5.0028176 C6.984375,5.0692246 6,6.0848496 6,7.3192246 L7,7.3192246 C7,6.5067246 7.703125,5.8739116 8.558594,6.0223496 C9.175781,6.1278176 9.65625,6.7293806 9.640625,7.3582866 C9.621094,7.9168806 9.300781,8.2684426 8.820313,8.4754746 C8.527344,8.6082866 8.246094,8.7332866 8.007813,8.9832866 C7.769531,9.2332866 7.640625,9.6043806 7.640625,9.9989116 L8.640625,9.9989116 C8.640625,9.7762556 8.667969,9.7410996 8.730469,9.6746926 C8.792969,9.6082866 8.953125,9.5145366 9.226563,9.3934426 C9.972656,9.0653176 10.609375,8.3543806 10.640625,7.3895366 C10.671875,6.2528176 9.859375,5.2293806 8.726563,5.0340676 C8.546875,5.0028176 8.371094,4.9950056 8.195313,5.0028176 Z M7.640625,10.9989116 L7.640625,11.9989116 L8.640625,11.9989116 L8.640625,10.9989116 L7.640625,10.9989116 Z" id="Shape" fill-rule="nonzero"></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                            <div class="planning__tipPopup js-tip-popup">
+                                <div class="planning__tipPopupText">
+                                    Ключевые параметры проекта
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>
+                            <input type="checkbox" class="planning__input" id="revenue" name="key-params" value="revenue">
+                            <label for="revenue" class="planning__inputLabel planning__inputLabel--checkbox">
+                                Выручка
+                            </label>
+                            <div class="planning__tip">
+                                <svg class="planning__tipImage js-tip-image" width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g stroke="none" stroke-width="1">
+                                        <g transform="translate(-620.000000, -236.000000)">
+                                            <g transform="translate(620.000000, 236.000000)">
+                                                <circle stroke="#4174D7" cx="8.5" cy="8.5" r="8"></circle>
+                                                <path d="M8.195313,5.0028176 C6.984375,5.0692246 6,6.0848496 6,7.3192246 L7,7.3192246 C7,6.5067246 7.703125,5.8739116 8.558594,6.0223496 C9.175781,6.1278176 9.65625,6.7293806 9.640625,7.3582866 C9.621094,7.9168806 9.300781,8.2684426 8.820313,8.4754746 C8.527344,8.6082866 8.246094,8.7332866 8.007813,8.9832866 C7.769531,9.2332866 7.640625,9.6043806 7.640625,9.9989116 L8.640625,9.9989116 C8.640625,9.7762556 8.667969,9.7410996 8.730469,9.6746926 C8.792969,9.6082866 8.953125,9.5145366 9.226563,9.3934426 C9.972656,9.0653176 10.609375,8.3543806 10.640625,7.3895366 C10.671875,6.2528176 9.859375,5.2293806 8.726563,5.0340676 C8.546875,5.0028176 8.371094,4.9950056 8.195313,5.0028176 Z M7.640625,10.9989116 L7.640625,11.9989116 L8.640625,11.9989116 L8.640625,10.9989116 L7.640625,10.9989116 Z" id="Shape" fill-rule="nonzero"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <div class="planning__tipPopup js-tip-popup">
+                                    <div class="planning__tipPopupText">
+                                        Выручка
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="planning__input" id="ebitda" name="key-params" value="ebitda">
+                            <label for="ebitda" class="planning__inputLabel planning__inputLabel--checkbox">
+                                EBITDA
+                            </label>
+                            <div class="planning__tip">
+                                <svg class="planning__tipImage js-tip-image" width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g stroke="none" stroke-width="1">
+                                        <g transform="translate(-620.000000, -236.000000)">
+                                            <g transform="translate(620.000000, 236.000000)">
+                                                <circle stroke="#4174D7" cx="8.5" cy="8.5" r="8"></circle>
+                                                <path d="M8.195313,5.0028176 C6.984375,5.0692246 6,6.0848496 6,7.3192246 L7,7.3192246 C7,6.5067246 7.703125,5.8739116 8.558594,6.0223496 C9.175781,6.1278176 9.65625,6.7293806 9.640625,7.3582866 C9.621094,7.9168806 9.300781,8.2684426 8.820313,8.4754746 C8.527344,8.6082866 8.246094,8.7332866 8.007813,8.9832866 C7.769531,9.2332866 7.640625,9.6043806 7.640625,9.9989116 L8.640625,9.9989116 C8.640625,9.7762556 8.667969,9.7410996 8.730469,9.6746926 C8.792969,9.6082866 8.953125,9.5145366 9.226563,9.3934426 C9.972656,9.0653176 10.609375,8.3543806 10.640625,7.3895366 C10.671875,6.2528176 9.859375,5.2293806 8.726563,5.0340676 C8.546875,5.0028176 8.371094,4.9950056 8.195313,5.0028176 Z M7.640625,10.9989116 L7.640625,11.9989116 L8.640625,11.9989116 L8.640625,10.9989116 L7.640625,10.9989116 Z" id="Shape" fill-rule="nonzero"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <div class="planning__tipPopup js-tip-popup">
+                                    <div class="planning__tipPopupText">
+                                        EBITDA
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="planning__input" id="clear-profit" name="key-params" value="clear-profit">
+                            <label for="clear-profit" class="planning__inputLabel planning__inputLabel--checkbox">
+                                Чистая прибыль
+                            </label>
+                            <div class="planning__tip">
+                                <svg class="planning__tipImage js-tip-image" width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g stroke="none" stroke-width="1">
+                                        <g transform="translate(-620.000000, -236.000000)">
+                                            <g transform="translate(620.000000, 236.000000)">
+                                                <circle stroke="#4174D7" cx="8.5" cy="8.5" r="8"></circle>
+                                                <path d="M8.195313,5.0028176 C6.984375,5.0692246 6,6.0848496 6,7.3192246 L7,7.3192246 C7,6.5067246 7.703125,5.8739116 8.558594,6.0223496 C9.175781,6.1278176 9.65625,6.7293806 9.640625,7.3582866 C9.621094,7.9168806 9.300781,8.2684426 8.820313,8.4754746 C8.527344,8.6082866 8.246094,8.7332866 8.007813,8.9832866 C7.769531,9.2332866 7.640625,9.6043806 7.640625,9.9989116 L8.640625,9.9989116 C8.640625,9.7762556 8.667969,9.7410996 8.730469,9.6746926 C8.792969,9.6082866 8.953125,9.5145366 9.226563,9.3934426 C9.972656,9.0653176 10.609375,8.3543806 10.640625,7.3895366 C10.671875,6.2528176 9.859375,5.2293806 8.726563,5.0340676 C8.546875,5.0028176 8.371094,4.9950056 8.195313,5.0028176 Z M7.640625,10.9989116 L7.640625,11.9989116 L8.640625,11.9989116 L8.640625,10.9989116 L7.640625,10.9989116 Z" id="Shape" fill-rule="nonzero"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <div class="planning__tipPopup js-tip-popup">
+                                    <div class="planning__tipPopupText">
+                                        Чистая прибыль
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="planning__input js-checkbox-other" id="otherKeys" name="key-params" value="otherKeys">
+                            <label for="otherKeys" class="planning__inputLabel planning__inputLabel--checkbox">
+                                Иное
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="planning__fieldset hided js-hiding-fieldset">
+                    <div class="planning__fieldsetLabel">
+                        Иные параметры для оценки
+                    </div>
+                    <textarea class="planning__textarea" name="other-params" placeholder="Введите иные договоренности"></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="planning__buttons">
+            <button class="planning__button planning__button--cancel"
+                    onclick="document.location.href = 'index.html';">
+                Отменить
+            </button>
+            <button class="planning__button planning__button--save">
+                Сохранить
+            </button>
+        </div>
+    </div>
+
+    <script src="js/vendor.min.js"></script>
+    <script src="js/main.min.js"></script>
+</body>
+</html>
