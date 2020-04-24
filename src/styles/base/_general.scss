@@ -44,3 +44,7 @@ button {
     margin-bottom: 0 !important;
     overflow: hidden !important;
 }
+
+[v-cloak] {
+    display: none;
+}

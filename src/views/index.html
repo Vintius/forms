@@ -28,7 +28,7 @@
     </head>
     <body class="mainForm">
         @@include("../blocks/modules/header/header.html")
-        <div class="mainForm__content content" id="main-form">
+        <div class="mainForm__content content" id="main-form" v-cloak>
             <h1 class="mainForm__title">
                 Финансирование проекта
             </h1>
@@ -229,7 +229,7 @@
                                                                         >
                                                                         <datepicker
                                                                                 input-class="mainForm__participantInputDate"
-                                                                                :placeholder="'Сумма' + placeholderCounts(trancheIndex, 'genitive') + ' транша'"
+                                                                                :placeholder="'Дата' + placeholderCounts(trancheIndex, 'genitive') + ' транша'"
                                                                                 v-model="tranche.trancheDate"
                                                                                 :monday-first=true
                                                                                 :language=ru
