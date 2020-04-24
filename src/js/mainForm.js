@@ -81,9 +81,6 @@ window.mainForm = new Vue({
                         </svg>'
         }
     },
-    computed: {
-
-    },
     methods: {
         stepDefProps: function () {
             return {
@@ -192,9 +189,23 @@ window.mainForm = new Vue({
             else {
                 return ' ' + this.countList[index][type]
             }
+        },
+        saveStage: function () {
+            sessionStorage.data = JSON.stringify(this.$data, function (key, value) {
+                // debugger;
+                return (key == 'lastStage' || key == 'ru' || key == 'countList') ? undefined : value;
+            });
         }
     },
     created: function () {
         this.addStep();
+
+        if (sessionStorage.data){
+            let parsed = JSON.parse(sessionStorage.data);
+
+            for (let item in parsed) {
+                this[item] = parsed[item]
+            }
+        }
     }
 });

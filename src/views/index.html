@@ -643,7 +643,8 @@
             </div>
             <div class="mainForm__stagesButtons">
                 <button class="mainForm__button"
-                        @click="function(){if (lastStage) lastStage = false}">
+                        @click="function(){if (lastStage) {lastStage = false}
+                                           else {this.sessionStorage.clear(); this.location.reload();}}">
                     ОТМЕНИТЬ
                 </button>
                 <button class="mainForm__button mainForm__button--blue"
@@ -653,7 +654,8 @@
                     СЛЕДУЮЩИЙ ШАГ
                 </button>
                 <button class="mainForm__button mainForm__button--blue"
-                        v-if="lastStage">
+                        v-if="lastStage"
+                        @click="[saveStage(), this.document.location.href = 'planning.html']">
                     СОХРАНИТЬ
                 </button>
             </div>
