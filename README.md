@@ -1,6 +1,7 @@
 # Forms pages
 
 Сделано на Vue.js
+Просмотр проекта: https://vintius.github.io/forms/
 
 [//]: # (Просмотр проекта: https://vintius.github.io/forms/)    
 
