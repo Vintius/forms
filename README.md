@@ -1,9 +1,8 @@
 # Forms pages
 
 Сделано на Vue.js
-Просмотр проекта: https://vintius.github.io/forms/
 
-[//]: # (Просмотр проекта: https://vintius.github.io/forms/)    
+Просмотр проекта: https://vintius.github.io/forms/    
 
 Сборка проекта основана на разработке
 https://github.com/andreyalexeich/gulp-scss-starter.git
