@@ -91,40 +91,17 @@
                                         <transition name="slide-fade">
                                             <div class="mainForm__participantProps"
                                                  v-if="finStep.checkedParticipants.indexOf(participantsNames[participantIndex]) > -1">
-                                                <div class="mainForm__participantFieldset">
-                                                    <div class="mainForm__participantFieldsetTitle">
-                                                        Нужно ли выполнить условия для начала финансирования?
-                                                    </div>
-                                                    <div class="mainForm__participantInputs">
-                                                        <ul>
-                                                            <li>
-                                                                <input type="radio"
-                                                                       class="mainForm__participantInputRadio"
-                                                                       :id='"doneConditions_notNeed_" + finStepIndex + "_" + participantIndex'
-                                                                       :value=false
-                                                                       v-model="participant.doneConditions">
-                                                                <label :for='"doneConditions_notNeed_" + finStepIndex + "_" + participantIndex'
-                                                                       class="mainForm__participantInputLabel">
-                                                                    Не нужно
-                                                                </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="radio"
-                                                                       class="mainForm__participantInputRadio"
-                                                                       :id="'doneConditions_need_' + finStepIndex + '_' + participantIndex"
-                                                                       :value=true
-                                                                       v-model="participant.doneConditions">
-                                                                <label :for="'doneConditions_need_' + finStepIndex + '_' + participantIndex"
-                                                                       class="mainForm__participantInputLabel">
-                                                                    Нужно
-                                                                </label>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
+                                                <fieldset-block name="doneConditions"
+                                                                v-model="participant.doneConditions"
+                                                                v-bind="{participantIndex, finStepIndex}"
+                                                                type="radio">
+                                                    <template #title>Нужно ли выполнить условия для начала финансирования?</template>
+                                                    <template #item_0>Не нужно</template>
+                                                    <template #item_1>Нужно</template>
+                                                </fieldset-block>
                                                 <transition name="slide-fade">
                                                     <div class="mainForm__participantFieldset"
-                                                         v-if="participant.doneConditions">
+                                                         v-if="participant.doneConditions === 'item_1'">
                                                         <div class="mainForm__participantFieldsetTitle mainForm__participantFieldsetTitle--text">
                                                             Условия начала финансирования
                                                         </div>
@@ -180,40 +157,17 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="mainForm__participantFieldset">
-                                                    <div class="mainForm__participantFieldsetTitle">
-                                                        Порядок внесения денежных средств
-                                                    </div>
-                                                    <div class="mainForm__participantInputs">
-                                                        <ul>
-                                                            <li>
-                                                                <input type="radio"
-                                                                       class="mainForm__participantInputRadio"
-                                                                       :id="'orderEntry_once_' + finStepIndex + '_' + participantIndex"
-                                                                       v-model="participant.orderEntry"
-                                                                       value="once">
-                                                                <label :for="'orderEntry_once_' + finStepIndex + '_' + participantIndex"
-                                                                       class="mainForm__participantInputLabel mainForm__participantInputLabel--radio">
-                                                                    Единовременно
-                                                                </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="radio"
-                                                                       class="mainForm__participantInputRadio"
-                                                                       :id="'orderEntry_tranche_' + finStepIndex + '_' + participantIndex"
-                                                                       v-model="participant.orderEntry"
-                                                                       value="tranches">
-                                                                <label :for="'orderEntry_tranche_' + finStepIndex + '_' + participantIndex"
-                                                                       class="mainForm__participantInputLabel mainForm__participantInputLabel--radio">
-                                                                    Траншами
-                                                                </label>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
+                                                <fieldset-block name="orderEntry"
+                                                               v-model="participant.orderEntry"
+                                                               type="radio"
+                                                               v-bind="{participantIndex, finStepIndex}">
+                                                    <template #title>Порядок внесения денежных средств</template>
+                                                    <template #item_0>Единовременно</template>
+                                                    <template #item_1>Траншами</template>
+                                                </fieldset-block>
                                                 <transition name="slide-fade">
                                                     <div class="mainForm__participantFieldset"
-                                                         v-if="participant.orderEntry=='tranches'">
+                                                         v-if="participant.orderEntry=='item_1'">
                                                         <div class="mainForm__participantFieldsetTitle mainForm__participantFieldsetTitle--text">
                                                             Выберите суммы и даты траншей
                                                         </div>
@@ -253,40 +207,17 @@
                                                         </div>
                                                     </div>
                                                 </transition>
-                                                <div class="mainForm__participantFieldset">
-                                                    <div class="mainForm__participantFieldsetTitle">
-                                                        Форма финансирования
-                                                    </div>
-                                                    <div class="mainForm__participantInputs">
-                                                        <ul>
-                                                            <li>
-                                                                <input type="radio"
-                                                                       class="mainForm__participantInputRadio"
-                                                                       :id="'finForm_cashIn_' + finStepIndex + '_' + participantIndex"
-                                                                       v-model="participant.finForm"
-                                                                       value="cashIn">
-                                                                <label :for="'finForm_cashIn_' + finStepIndex + '_' + participantIndex"
-                                                                       class="mainForm__participantInputLabel mainForm__participantInputLabel--radio">
-                                                                    В капитал(cash-in)
-                                                                </label>
-                                                            </li>
-                                                            <li>
-                                                                <input type="radio"
-                                                                       class="mainForm__participantInputRadio"
-                                                                       :id="'finForm_loan_' + finStepIndex + '_' + participantIndex"
-                                                                       v-model="participant.finForm"
-                                                                       value="loan">
-                                                                <label :for="'finForm_loan_' + finStepIndex + '_' + participantIndex"
-                                                                       class="mainForm__participantInputLabel mainForm__participantInputLabel--radio">
-                                                                    Заемное финансирование
-                                                                </label>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
+                                                <fieldset-block name="finForm"
+                                                                type="radio"
+                                                                v-model="participant.finForm"
+                                                                v-bind="{finStepIndex, participantIndex}">
+                                                    <template #title>Форма финансирования</template>
+                                                    <template #item_0>В капитал(cash-in)</template>
+                                                    <template #item_1>Заемное финансирование</template>
+                                                </fieldset-block>
                                                 <transition-group name="slide-fade">
                                                     <div class="mainForm__participantFieldset"
-                                                         v-if='participant.finForm === "loan"'
+                                                         v-if='participant.finForm === "item_1"'
                                                          key="loanPercent">
                                                         <div class="mainForm__participantFieldsetTitle">
                                                             Выберите процентную ставку и срок займа
@@ -302,40 +233,17 @@
                                                                    v-model="participant.loanPeriod">
                                                         </div>
                                                     </div>
-                                                    <div v-if='participant.finForm === "loan"'
-                                                         class="mainForm__participantFieldset"
-                                                         key="loanType">
-                                                        <div class="mainForm__participantFieldsetTitle">
-                                                            Вид займа
-                                                        </div>
-                                                        <div class="mainForm__participantInputs">
-                                                            <ul>
-                                                                <li>
-                                                                    <input type="radio"
-                                                                           class="mainForm__participantInputRadio"
-                                                                           :id="'loan_noPurpose_' + finStepIndex + '_' + participantIndex"
-                                                                           v-model="participant.loanType"
-                                                                           value="noPurpose">
-                                                                    <label :for="'loan_noPurpose_' + finStepIndex + '_' + participantIndex"
-                                                                           class="mainForm__participantInputLabel mainForm__participantInputLabel--radio">
-                                                                        Нецелевой
-                                                                    </label>
-                                                                </li>
-                                                                <li>
-                                                                    <input type="radio"
-                                                                           class="mainForm__participantInputRadio"
-                                                                           :id="'loan_purpose' + finStepIndex + '_' + participantIndex"
-                                                                           v-model="participant.loanType"
-                                                                           value="purpose">
-                                                                    <label :for="'loan_purpose' + finStepIndex + '_' + participantIndex"
-                                                                           class="mainForm__participantInputLabel mainForm__participantInputLabel--radio">
-                                                                        Целевой
-                                                                    </label>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div v-if='participant.finForm === "loan" && participant.loanType === "purpose"'
+                                                    <fieldset-block v-if='participant.finForm === "item_1"'
+                                                                    name="loan"
+                                                                    type="radio"
+                                                                    v-model="participant.loanType"
+                                                                    v-bind="{finStepIndex, participantIndex}"
+                                                                    key="loanType">
+                                                        <template #title>Вид займа</template>
+                                                        <template #item_0>Нецелевой</template>
+                                                        <template #item_1>Целевой</template>
+                                                    </fieldset-block>
+                                                    <div v-if='participant.finForm === "item_1" && participant.loanType === "item_1"'
                                                          class="mainForm__participantFieldset"
                                                          key="loanPoint">
                                                         <div class="mainForm__participantFieldsetTitle mainForm__participantFieldsetTitle--text">
@@ -347,39 +255,16 @@
                                                                    placeholder="Введите цель займа">
                                                         </div>
                                                     </div>
-                                                    <div v-if='participant.finForm === "loan" && participant.loanType === "purpose"'
-                                                         class="mainForm__participantFieldset"
-                                                         key="loanConvert">
-                                                        <div class="mainForm__participantFieldsetTitle">
-                                                            Возможна конвертация в доли/акции проекта?
-                                                        </div>
-                                                        <div class="mainForm__participantInputs">
-                                                            <ul>
-                                                                <li>
-                                                                    <input type="radio"
-                                                                           class="mainForm__participantInputRadio"
-                                                                           :id="'convertPossible_true' + finStepIndex + '_' + participantIndex"
-                                                                           v-model="participant.convertPossible"
-                                                                           :value=true>
-                                                                    <label :for="'convertPossible_true' + finStepIndex + '_' + participantIndex"
-                                                                           class="mainForm__participantInputLabel mainForm__participantInputLabel--radio">
-                                                                        Возможна
-                                                                    </label>
-                                                                </li>
-                                                                <li>
-                                                                    <input type="radio"
-                                                                           class="mainForm__participantInputRadio"
-                                                                           :id="'convertPossible_false' + finStepIndex + '_' + participantIndex"
-                                                                           v-model="participant.convertPossible"
-                                                                           :value=false>
-                                                                    <label :for="'convertPossible_false' + finStepIndex + '_' + participantIndex"
-                                                                           class="mainForm__participantInputLabel mainForm__participantInputLabel--radio">
-                                                                        Невозможна
-                                                                    </label>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
+                                                    <fieldset-block v-if='participant.finForm === "item_1" && participant.loanType === "item_1"'
+                                                                    name="convertPossible"
+                                                                    type="radio"
+                                                                    v-model="participant.convertPossible"
+                                                                    v-bind="{finStepIndex, participantIndex}"
+                                                                    key="loanConvert">
+                                                        <template #title>Возможна конвертация в доли/акции проекта?</template>
+                                                        <template #item_0>Возможна</template>
+                                                        <template #item_1>Невозможна</template>
+                                                    </fieldset-block>
                                                 </transition-group>
                                             </div>
                                         </transition>
@@ -398,41 +283,19 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="mainForm__participantFieldset mainForm__participantFieldset--after"
-                             v-if="finStep.isSaved">
-                            <div class="mainForm__participantFieldsetTitle">
-                                Меняется ли распределение долей после финансирования?
-                            </div>
-                            <div class="mainForm__participantInputs">
-                                <ul>
-                                    <li>
-                                        <input type="radio"
-                                               class="mainForm__participantInputRadio"
-                                               :id="'isChangingAfter_false' + finStepIndex"
-                                               v-model="finStep.isChangingAfter"
-                                               :value=false>
-                                        <label :for="'isChangingAfter_false' + finStepIndex"
-                                               class="mainForm__participantInputLabel mainForm__participantInputLabel--radio">
-                                            Не меняются
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <input type="radio"
-                                               class="mainForm__participantInputRadio"
-                                               :id="'isChangingAfter_true' + finStepIndex"
-                                               v-model="finStep.isChangingAfter"
-                                               :value=true>
-                                        <label :for="'isChangingAfter_true' + finStepIndex"
-                                               class="mainForm__participantInputLabel mainForm__participantInputLabel--radio">
-                                            Меняется
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        <fieldset-block class="mainForm__participantFieldset--after"
+                                        v-if="finStep.isSaved"
+                                        name="isChangingAfter"
+                                        type="radio"
+                                        v-model="finStep.isChangingAfter"
+                                        v-bind="{finStepIndex}">
+                            <template #title>Меняется ли распределение долей после финансирования?</template>
+                            <template #item_0>Не меняется</template>
+                            <template #item_1>Меняется</template>
+                        </fieldset-block>
                         <transition name="slide-fade">
                             <div class="mainForm__participantFieldset mainForm__participantFieldset--after"
-                                 v-if="finStep.isSaved && finStep.isChangingAfter">
+                                 v-if="finStep.isSaved && finStep.isChangingAfter === 'item_1'">
                                 <div class="mainForm__participantFieldsetTitle">
                                     Выберите изменение долей
                                 </div>
@@ -507,38 +370,22 @@
             </div>
             <div class="mainForm__lastStage" v-if="lastStage">
                 <div class="mainForm__step">
-                    <div class="mainForm__participantFieldset mainForm__participantFieldset--after mainForm__participantFieldset--no-border">
-                        <div class="mainForm__participantFieldsetTitle">
-                            Добавить принципы непредвиденного финансирования?
-                        </div>
-                        <div class="mainForm__participantInputs">
-                            <ul>
-                                <li>
-                                    <input type="radio" id="allowUnexpectedFin_no"
-                                           class="mainForm__participantInputRadio mainForm__participantInputRadio--small"
-                                           :value=false
-                                           v-model="lastStageProps.allowUnexpectedFin">
-                                    <label for="allowUnexpectedFin_no" class="mainForm__participantInputLabel">
-                                        Нет
-                                    </label>
-                                </li>
-                                <li>
-                                    <input type="radio" id="allowUnexpectedFin_yes"
-                                           class="mainForm__participantInputRadio mainForm__participantInputRadio--small"
-                                           :value=true
-                                           v-model="lastStageProps.allowUnexpectedFin">
-                                    <label for="allowUnexpectedFin_yes" class="mainForm__participantInputLabel">
-                                        Да
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <fieldset-block class="mainForm__participantFieldset--after mainForm__participantFieldset--no-border"
+                                    name="allowUnexpectedFin"
+                                    type="radio"
+                                    v-model="lastStageProps.allowUnexpectedFin">
+                        <template #title>Добавить принципы непредвиденного финансирования?</template>
+                        <template #item_0>Нет</template>
+                        <template #item_1>Да</template>
+                    </fieldset-block>
                     <transition-group name="slide-fade">
-                        <template v-if="lastStageProps.allowUnexpectedFin">
-                            <div class="mainForm__participantFieldset mainForm__participantFieldset--after mainForm__participantFieldset--no-border"
-                                    key="allowUnexpectedFin">
-                                <div class="mainForm__participantFieldsetTitle">
+                        <template v-if="lastStageProps.allowUnexpectedFin === 'item_1'">
+                            <fieldset-block class="mainForm__participantFieldset--after mainForm__participantFieldset--no-border"
+                                            name="unexpectedFin"
+                                            type="radio"
+                                            v-model="lastStageProps.unexpectedFin"
+                                            key="allowUnexpectedFin">
+                                <template #title>
                                     Принципы непредвиденного финансирования
                                     <span class="mainForm__participantFieldsetTitleTooltipBox">
                                         <question-image></question-image>
@@ -547,38 +394,13 @@
                                                 Текст подсказки
                                             </p>
                                         </div>
-                                    </span>
-                                </div>
-                                <div class="mainForm__participantInputs">
-                                    <ul>
-                                        <li>
-                                            <input type="radio" id="unexpectedFin_proportional"
-                                                   class="mainForm__participantInputRadio mainForm__participantInputRadio--small"
-                                                   value="proportional"
-                                                   v-model="lastStageProps.unexpectedFin">
-                                            <label for="unexpectedFin_proportional"
-                                                   class="mainForm__participantInputLabel">
-                                                    <span>
-                                                        Финансирование проекта осуществляется участниками пропорционально долям
-                                                    </span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="allowUnexpectedFin_other"
-                                                   class="mainForm__participantInputRadio mainForm__participantInputRadio--small"
-                                                   value='other'
-                                                   v-model="lastStageProps.unexpectedFin">
-                                            <label for="allowUnexpectedFin_other"
-                                                   class="mainForm__participantInputLabel">
-                                                Иной порядок
-                                            </label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                                    </span></template>
+                                <template #item_0>Финансирование проекта осуществляется участниками пропорционально долям</template>
+                                <template #item_1>Иной порядок</template>
+                            </fieldset-block>
                             <div class="mainForm__participantFieldset mainForm__participantFieldset--after mainForm__participantFieldset--no-border"
                                  key="unexpectedFin"
-                                 v-if="lastStageProps.unexpectedFin === 'other'">
+                                 v-if="lastStageProps.unexpectedFin === 'item_1'">
                                 <div class="mainForm__participantFieldsetTitle">
                                     Введите иной порядок
                                     <span class="mainForm__participantFieldsetTitleTooltipBox">
@@ -599,36 +421,17 @@
                             </div>
                         </template>
                     </transition-group>
-                    <div class="mainForm__participantFieldset mainForm__participantFieldset--after mainForm__participantFieldset--no-border">
-                        <div class="mainForm__participantFieldsetTitle">
-                            Добавить иные договоренности в отношении финансирования?
-                        </div>
-                        <div class="mainForm__participantInputs">
-                            <ul>
-                                <li>
-                                    <input type="radio" id="addOtherAgreements_no"
-                                           class="mainForm__participantInputRadio mainForm__participantInputRadio--small"
-                                           :value=false
-                                           v-model="lastStageProps.addOtherAgreements">
-                                    <label for="addOtherAgreements_no" class="mainForm__participantInputLabel">
-                                        Нет
-                                    </label>
-                                </li>
-                                <li>
-                                    <input type="radio" id="addOtherAgreements_yes"
-                                           class="mainForm__participantInputRadio mainForm__participantInputRadio--small"
-                                           :value=true
-                                           v-model="lastStageProps.addOtherAgreements">
-                                    <label for="addOtherAgreements_yes" class="mainForm__participantInputLabel">
-                                        Да
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <fieldset-block class="mainForm__participantFieldset--after mainForm__participantFieldset--no-border"
+                                    name="addOtherAgreements"
+                                    type="radio"
+                                    v-model="lastStageProps.addOtherAgreements">
+                        <template #title>Добавить иные договоренности в отношении финансирования?</template>
+                        <template #item_0>Нет</template>
+                        <template #item_1>Да</template>
+                    </fieldset-block>
                     <transition name="slide-fade">
                         <div class="mainForm__participantFieldset mainForm__participantFieldset--after mainForm__participantFieldset--no-border"
-                             v-if="lastStageProps.addOtherAgreements">
+                             v-if="lastStageProps.addOtherAgreements === 'item_1'">
                             <div class="mainForm__participantFieldsetTitle">
                                 Иные договоренности в отношении финансирования
                             </div>
