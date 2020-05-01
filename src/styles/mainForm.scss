@@ -364,9 +364,14 @@
 
 .mainForm__participantInputLabel {
   position: relative;
+  padding-left: 40px;
+  cursor: pointer;
 
   &:before {
     content: '';
+    position: absolute;
+    top: -3px;
+    left: 0;
     display: inline-block;
     width: 24px;
     height: 24px;
@@ -535,6 +540,10 @@
   &:not(:first-child) {
     margin-top: 40px;
   }
+}
+
+.mainForm__participantProps span .mainForm__participantFieldset {
+  margin-top: 40px;
 }
 
 .mainForm__buttons {
